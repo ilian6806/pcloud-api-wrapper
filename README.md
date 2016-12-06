@@ -5,9 +5,13 @@ Usage:
 
 ```php
 $pcloud = new pCloud();
+
 $pcloud->login('username', 'password');
+
 $pcloud->upload('filename', 'folderId', function ($data) use ($pcloud) {
+
     $pcloud->log('Done.');
+    
     $link = $pcloud->getfilepublink($data->fileid);
     $pcloud->log($link);
 });
