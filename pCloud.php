@@ -8,7 +8,7 @@
  * @since 12.06.16
  */
 
-class pCloud 
+class pCloud
 {
 
     const MAIN_URL = 'http://api.pcloud.com/';
@@ -52,7 +52,7 @@ class pCloud
      * @param String $methodName API method name
      * @return String Method URI
      */
-    private function getMethodUrl($methodName) 
+    private function getMethodUrl($methodName)
     {
         if (! in_array($methodName, $this->methods)) {
             throw new Exception('No such API method');
@@ -75,7 +75,7 @@ class pCloud
             CURLOPT_POST => true,
             CURLOPT_POSTFIELDS => http_build_query($data),
             CURLOPT_RETURNTRANSFER => true
-        ]); 
+        ]);
 
         $response = json_decode(curl_exec($curl));
         curl_close($curl);
@@ -106,7 +106,7 @@ class pCloud
             CURLOPT_INFILE => $fh_res,
             CURLOPT_INFILESIZE => filesize($file_path),
             CURLOPT_RETURNTRANSFER => 1
-        ]); 
+        ]);
 
         $response = json_decode(curl_exec($curl));
 
@@ -208,17 +208,5 @@ class pCloud
     public function getUserData()
     {
         return $this->userData;
-    }
-
-    /**
-     * Custom logger
-     *
-     * @param String $message Message for log
-     */
-    public function log($message) 
-    {   
-        echo '<pre>';
-        print_r($message);
-        echo '</pre>';
     }
 }
