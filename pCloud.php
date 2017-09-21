@@ -87,30 +87,30 @@ class pCloud
      * Send http put request
      *
      * @param String $url Request URI
-     * @param String $file_path Target file path
-     * @param Array $get_params Request get params
+     * @param String $filePath Target file path
+     * @param Array $getParams Request get params
      * @return Object Response
      */
-    private function httpPut($url, $file_path, $get_params) {
+    private function httpPut($url, $filePath, $getParams) {
 
-        if ( isset($get_params)) {
-            $url .= '?' . http_build_query($get_params);
+        if ( isset($getParams)) {
+            $url .= '?' . http_build_query($getParams);
         }
 
         $curl = curl_init();
-        $fh_res = fopen($file_path, 'r');
+        $file = fopen($filePath, 'r');
 
         curl_setopt_array($curl, [
             CURLOPT_URL => $url,
             CURLOPT_PUT => 1,
-            CURLOPT_INFILE => $fh_res,
-            CURLOPT_INFILESIZE => filesize($file_path),
+            CURLOPT_INFILE => $file,
+            CURLOPT_INFILESIZE => filesize($filePath),
             CURLOPT_RETURNTRANSFER => 1
         ]);
 
         $response = json_decode(curl_exec($curl));
 
-        fclose($fh_res);
+        fclose($file);
 
         return $response;
     }

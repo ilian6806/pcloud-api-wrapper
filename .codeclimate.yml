@@ -11,8 +11,6 @@ engines:
     checks:
       CleanCode/ElseExpression:
         enabled: false
-      Controversial/CamelCaseClassName:
-        enabled: false
   fixme:
     enabled: true
 ratings:
